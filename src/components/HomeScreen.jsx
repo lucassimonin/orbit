@@ -76,14 +76,14 @@ export default function HomeScreen({
     };
 
     return (
-        <div className="relative h-[100dvh] flex flex-col items-center justify-start pt-20 pb-20 p-6 bg-black overflow-y-auto font-sans custom-scrollbar touch-pan-y">
+        <div className="relative h-[100dvh] flex flex-col items-center justify-start pt-12 pb-20 p-6 bg-black overflow-y-auto font-sans custom-scrollbar touch-pan-y">
             <CosmicBackground />
 
             {/* Header */}
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-16 z-10"
+                className="text-center mb-8 z-10"
             >
                 <h1 className="text-6xl font-black italic tracking-tighter text-white mb-2 uppercase">
                     ORBIT
@@ -97,7 +97,7 @@ export default function HomeScreen({
                 animate={{ opacity: 1, y: 0 }}
                 className="w-full max-w-md z-10 relative px-2"
             >
-                <div className="relative mb-10 group">
+                <div className="relative mb-6 group">
                     <div className="flex gap-3">
                         <div className="relative flex-1">
                             <input
@@ -138,7 +138,7 @@ export default function HomeScreen({
                     </div>
                 </div>
 
-                <div className="space-y-4 mb-10 max-h-[25vh] overflow-y-auto pr-2 custom-scrollbar">
+                <div className="space-y-4 mb-6 max-h-[25vh] overflow-y-auto pr-2 custom-scrollbar">
                     <AnimatePresence mode="popLayout">
                         {players.map((player) => (
                             <motion.div
@@ -174,7 +174,10 @@ export default function HomeScreen({
                         ))}
                     </AnimatePresence>
                     {players.length === 0 && (
-                        <p className="text-center py-10 text-white/20 font-bold italic tracking-wide">Ajoutez vos fêtards</p>
+                        <div className="border-2 border-dashed border-white/5 rounded-3xl py-8 px-4 flex flex-col items-center justify-center gap-2">
+                            <User size={24} className="text-white/10" />
+                            <p className="text-center text-white/20 font-bold italic tracking-wide text-xs">Ajoutez vos fêtards</p>
+                        </div>
                     )}
                 </div>
 
