@@ -91,11 +91,11 @@ export default function HomeScreen({
                 <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/30">Configuration</p>
             </motion.div>
 
-            {/* Glass Card */}
+            {/* Configuration Container */}
             <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="w-full max-w-sm glass-panel rounded-[3rem] p-10 z-10 relative"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="w-full max-w-md z-10 relative px-2"
             >
                 <div className="relative mb-10 group">
                     <div className="flex gap-3">
