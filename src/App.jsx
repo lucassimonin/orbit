@@ -210,7 +210,17 @@ function App() {
             className="absolute inset-0 z-10 flex flex-col"
             style={{ position: 'absolute', inset: 0, zIndex: 10, display: 'flex', flexDirection: 'column' }}
           >
-            <header className="w-full p-4 flex-shrink-0" style={{ width: '100%', padding: '1rem', flexShrink: 0 }}>
+            <header
+              className="w-full flex-shrink-0"
+              style={{
+                width: '100%',
+                paddingLeft: '1rem',
+                paddingRight: '1rem',
+                paddingTop: 'calc(env(safe-area-inset-top, 0px) + 0.5rem)',
+                paddingBottom: '0.5rem',
+                flexShrink: 0
+              }}
+            >
               <TopHUD
                 player={players[currentPlayerIndex]}
                 rankLabel={rankLabel}
@@ -234,7 +244,14 @@ function App() {
             </main>
 
             {/* Bottom Section */}
-            <footer className="w-full flex-shrink-0 pb-8" style={{ width: '100%', flexShrink: 0 }}>
+            <footer
+              className="w-full flex-shrink-0"
+              style={{
+                width: '100%',
+                flexShrink: 0,
+                paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 1rem)'
+              }}
+            >
               <BottomDashboard
                 onSpin={handleSpin}
                 disabled={isModalOpen}

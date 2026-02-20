@@ -17,17 +17,18 @@ export default function BottomDashboard({ onSpin, onEndGame, isSpinning, disable
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            gap: '0.75rem'
+                            gap: '0.6rem',
+                            padding: '0.75rem 1rem'
                         }}
                     >
-                        <RefreshCw size={22} className={isSpinning ? 'animate-spin' : ''} />
-                        {label}
+                        <RefreshCw size={18} className={isSpinning ? 'animate-spin' : ''} />
+                        <span className="text-sm font-black">{label}</span>
                     </button>
 
                     <button
                         onClick={onEndGame}
                         disabled={isSpinning}
-                        className="w-full py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-red-500 transition-all border border-red-500/20 bg-red-500/5 hover:bg-red-500/10 active:scale-95"
+                        className="w-full py-3 rounded-xl font-black uppercase tracking-[0.1em] text-[10px] text-red-500 transition-all border border-red-500/20 bg-red-500/5 hover:bg-red-500/10 active:scale-95"
                         style={{ cursor: isSpinning ? 'not-allowed' : 'pointer', opacity: isSpinning ? 0.3 : 1 }}
                     >
                         Fin de partie

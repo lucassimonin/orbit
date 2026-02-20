@@ -75,7 +75,7 @@ body {
   width: 100% !important;
   max-width: 450px !important;
   margin: 0 auto !important;
-  padding: 1rem 1.5rem !important;
+  padding: 0.75rem 1.25rem !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -90,7 +90,7 @@ body {
   width: 100% !important;
   max-width: 450px !important;
   margin: 0 auto !important;
-  padding: 1.5rem !important;
+  padding: 1.25rem !important;
   border-radius: 3rem 3rem 0 0 !important;
   background: rgba(12, 12, 20, 0.9) !important;
   backdrop-filter: blur(50px) !important;
@@ -129,7 +129,7 @@ body {
 
 /* --- BUTTONS --- */
 .btn-premium {
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 2rem;
   font-weight: 900;
   text-transform: uppercase;
