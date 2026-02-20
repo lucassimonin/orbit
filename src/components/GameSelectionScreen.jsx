@@ -139,13 +139,13 @@ const CategoryCard = memo(({
                                                 value={editValues.title}
                                                 onChange={e => setEditValues(v => ({ ...v, title: e.target.value }))}
                                                 className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-1.5 text-xs font-black outline-none"
-                                                placeholder="Titre..."
+                                                placeholder="Titre"
                                             />
                                             <textarea
                                                 value={editValues.text}
                                                 onChange={e => setEditValues(v => ({ ...v, text: e.target.value }))}
                                                 className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-1.5 text-[10px] outline-none min-h-[50px]"
-                                                placeholder="Texte du défi..."
+                                                placeholder="Texte du défi"
                                             />
                                             <div className="flex gap-2 p-2 bg-white/5 rounded-xl border border-white/5 mb-2">
                                                 <div className="flex-1 flex flex-col gap-1">
@@ -261,13 +261,13 @@ const CategoryCard = memo(({
                                 <div className="mt-4 p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
                                     <input
                                         autoFocus
-                                        placeholder="Titre..."
+                                        placeholder="Titre"
                                         value={newChallenge.title}
                                         onChange={e => setNewChallenge(p => ({ ...p, title: e.target.value }))}
                                         className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-xs font-bold outline-none"
                                     />
                                     <textarea
-                                        placeholder="Instructions..."
+                                        placeholder="Instructions"
                                         value={newChallenge.text}
                                         onChange={e => setNewChallenge(p => ({ ...p, text: e.target.value }))}
                                         className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-xs outline-none min-h-[60px]"

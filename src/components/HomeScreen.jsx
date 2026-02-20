@@ -105,14 +105,14 @@ export default function HomeScreen({
                                 value={playerName}
                                 onChange={(e) => setPlayerName(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && addPlayer()}
-                                placeholder="Nom du joueur..."
-                                className="w-full bg-white/[0.05] border border-white/10 rounded-2xl px-6 py-5 outline-none focus:border-white/20 transition-all font-bold text-lg placeholder:text-white/20"
+                                placeholder="Nom du joueur"
+                                className="w-full h-16 bg-white/[0.05] border border-white/10 rounded-2xl px-6 outline-none focus:border-white/20 transition-all font-bold text-sm placeholder:text-white/22"
                             />
                             <button
                                 onClick={addPlayer}
-                                className="absolute right-3 top-3 bottom-3 aspect-square bg-white text-black rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-xl"
+                                className="absolute right-2 top-2 bottom-2 aspect-square bg-white text-black rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-xl"
                             >
-                                <Plus size={24} strokeWidth={3} />
+                                <Plus size={20} strokeWidth={3} />
                             </button>
                         </div>
 
@@ -127,7 +127,7 @@ export default function HomeScreen({
 
                         <button
                             onClick={() => fileInputRef.current?.click()}
-                            className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all border ${selectedImage ? 'bg-cyan-500 border-cyan-400' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
+                            className={`w-16 h-16 rounded-2xl flex-shrink-0 flex items-center justify-center transition-all border ${selectedImage ? 'bg-cyan-500 border-cyan-400' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
                         >
                             {selectedImage ? (
                                 <img src={selectedImage} alt="Preview" className="w-12 h-12 rounded-lg object-cover shadow-lg" />
@@ -146,7 +146,7 @@ export default function HomeScreen({
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
-                                className="flex items-center justify-between bg-white/[0.03] p-4 rounded-2xl border border-white/5 relative group"
+                                className="flex items-center justify-between bg-white/[0.03] p-3 rounded-2xl border border-white/5 relative group"
                             >
                                 <div className="flex items-center gap-4">
                                     <div
@@ -162,7 +162,7 @@ export default function HomeScreen({
                                             </>
                                         )}
                                     </div>
-                                    <span className="font-bold text-lg text-white/90 tracking-tight">{player.name}</span>
+                                    <span className="font-bold text-base text-white/90 tracking-tight">{player.name}</span>
                                 </div>
                                 <button
                                     onClick={() => removePlayer(player.id)}
@@ -174,7 +174,7 @@ export default function HomeScreen({
                         ))}
                     </AnimatePresence>
                     {players.length === 0 && (
-                        <p className="text-center py-10 text-white/20 font-bold italic tracking-wide">Ajoutez vos fêtards...</p>
+                        <p className="text-center py-10 text-white/20 font-bold italic tracking-wide">Ajoutez vos fêtards</p>
                     )}
                 </div>
 

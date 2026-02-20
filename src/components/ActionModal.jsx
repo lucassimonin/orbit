@@ -201,7 +201,7 @@ export default function ActionModal({ isOpen, challenge, playerName, onComplete 
                                         <textarea
                                             value={ruleText}
                                             onChange={(e) => setRuleText(e.target.value)}
-                                            placeholder="Ex: Interdit de dire 'Santé'..."
+                                            placeholder="Ex: Interdit de dire 'Santé'"
                                             className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm text-white outline-none focus:border-white/30 transition-all min-h-[60px]"
                                         />
                                     </div>
