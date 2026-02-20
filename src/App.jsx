@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import HomeScreen from './components/HomeScreen';
 import VerticalSlotWheel from './components/VerticalSlotWheel';
 import ActionModal from './components/ActionModal';
@@ -19,14 +19,51 @@ function App() {
   const [resultIndex, setResultIndex] = useState(0);
 
   // Game Configuration State
-  const [gameConfig, setGameConfig] = useState({
-    maxRounds: 5,
-    targetPoints: 100
+  const [gameConfig, setGameConfig] = useState(() => {
+    const saved = localStorage.getItem('orbit_game_config');
+    return saved ? JSON.parse(saved) : { maxRounds: 5, targetPoints: 100 };
   });
   const [currentRound, setCurrentRound] = useState(1);
-  const [allChallenges, setAllChallenges] = useState(CHALLENGES);
-  const [disabledChallengeIds, setDisabledChallengeIds] = useState([]);
+
+  const [allChallenges, setAllChallenges] = useState(() => {
+    const saved = localStorage.getItem('orbit_challenges');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Merge with default CHALLENGES to ensure new official challenges appear
+        // but keep custom ones and modified ones
+        const customChallenges = parsed.filter(pc => !CHALLENGES.find(oc => oc.id === pc.id));
+        const modifiedOfficial = CHALLENGES.map(oc => {
+          const stored = parsed.find(pc => pc.id === oc.id);
+          return stored ? { ...oc, ...stored } : oc;
+        });
+        return [...modifiedOfficial, ...customChallenges];
+      } catch (e) {
+        return CHALLENGES;
+      }
+    }
+    return CHALLENGES;
+  });
+
+  const [disabledChallengeIds, setDisabledChallengeIds] = useState(() => {
+    const saved = localStorage.getItem('orbit_disabled_challenges');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [activeRules, setActiveRules] = useState([]);
+
+  // Persistence Effects
+  useEffect(() => {
+    localStorage.setItem('orbit_challenges', JSON.stringify(allChallenges));
+  }, [allChallenges]);
+
+  useEffect(() => {
+    localStorage.setItem('orbit_disabled_challenges', JSON.stringify(disabledChallengeIds));
+  }, [disabledChallengeIds]);
+
+  useEffect(() => {
+    localStorage.setItem('orbit_game_config', JSON.stringify(gameConfig));
+  }, [gameConfig]);
 
   const startGame = (initialPlayers, config) => {
     setPlayers(initialPlayers);
@@ -192,6 +229,7 @@ function App() {
           >
             <HomeScreen
               onStartGame={startGame}
+              initialConfig={gameConfig}
               allChallenges={allChallenges}
               disabledChallengeIds={disabledChallengeIds}
               onToggleChallenge={toggleChallenge}

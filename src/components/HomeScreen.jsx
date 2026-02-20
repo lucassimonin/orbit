@@ -6,6 +6,7 @@ import GameSelectionScreen from './GameSelectionScreen';
 
 export default function HomeScreen({
     onStartGame,
+    initialConfig = {},
     allChallenges = [],
     disabledChallengeIds = [],
     onToggleChallenge,
@@ -15,9 +16,9 @@ export default function HomeScreen({
 }) {
     const [playerName, setPlayerName] = useState('');
     const [players, setPlayers] = useState([]);
-    const [maxRounds, setMaxRounds] = useState(5);
-    const [targetPoints, setTargetPoints] = useState(100);
-    const [selectedCategories, setSelectedCategories] = useState(['Shot', 'Gage', 'Vérité', 'Dés', 'Règle', 'Défis', 'Chance']);
+    const [maxRounds, setMaxRounds] = useState(initialConfig.maxRounds || 5);
+    const [targetPoints, setTargetPoints] = useState(initialConfig.targetPoints || 100);
+    const [selectedCategories, setSelectedCategories] = useState(initialConfig.selectedCategories || ['Shot', 'Gage', 'Vérité', 'Dés', 'Règle', 'Défis', 'Chance']);
     const [selectedImage, setSelectedImage] = useState(null);
     const [isSelectionOpen, setIsSelectionOpen] = useState(false);
     const fileInputRef = React.useRef(null);
