@@ -8,6 +8,7 @@ import BottomDashboard from './components/BottomDashboard';
 import { CHALLENGES } from './data/challenges';
 import { Trophy, RefreshCcw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { App as CapacitorApp } from '@capacitor/app';
 import PodiumScreen from './components/PodiumScreen'; // Added import
 
 function App() {
@@ -264,7 +265,12 @@ function App() {
               Oui, j'ai plus de 18 ans
             </button>
             <button
-              onClick={() => window.location.href = 'https://www.google.com'}
+              onClick={() => {
+                CapacitorApp.exitApp().catch(() => {
+                  // Fallback for web browsers if Capacitor App.exitApp fails
+                  window.location.href = 'https://www.google.com';
+                });
+              }}
               className="w-full bg-white/5 text-white/50 border border-white/10 font-bold italic rounded-xl py-4 transition-transform active:scale-95 hover:bg-white/10 hover:text-white"
             >
               Non, je suis mineur

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Camera as CapacitorCamera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Plus, User, Trash2, ArrowRight, Settings, Gamepad2, Camera, Image as ImageIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CosmicBackground from './CosmicBackground';
@@ -21,7 +22,6 @@ export default function HomeScreen({
     const [selectedCategories, setSelectedCategories] = useState(initialConfig.selectedCategories || ['Shot', 'Gage', 'Vérité', 'Dés', 'Règle', 'Défis', 'Chance']);
     const [selectedImage, setSelectedImage] = useState(null);
     const [isSelectionOpen, setIsSelectionOpen] = useState(false);
-    const fileInputRef = React.useRef(null);
 
     const categories = ['Shot', 'Gage', 'Vérité', 'Dés', 'Règle', 'Défis', 'Chance'];
 
@@ -56,14 +56,19 @@ export default function HomeScreen({
         }
     };
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setSelectedImage(reader.result);
-            };
-            reader.readAsDataURL(file);
+    const takePicture = async () => {
+        try {
+            const photo = await CapacitorCamera.getPhoto({
+                quality: 80,
+                allowEditing: true,
+                resultType: CameraResultType.DataUrl,
+                source: CameraSource.Camera
+            });
+            if (photo.dataUrl) {
+                setSelectedImage(photo.dataUrl);
+            }
+        } catch (error) {
+            console.error('Error taking picture:', error);
         }
     };
 
@@ -117,17 +122,8 @@ export default function HomeScreen({
                             </button>
                         </div>
 
-                        <input
-                            type="file"
-                            ref={fileInputRef}
-                            onChange={handleImageChange}
-                            accept="image/*"
-                            capture="user"
-                            className="hidden"
-                        />
-
                         <button
-                            onClick={() => fileInputRef.current?.click()}
+                            onClick={takePicture}
                             className={`w-16 h-16 rounded-2xl flex-shrink-0 flex items-center justify-center transition-all border ${selectedImage ? 'bg-cyan-500 border-cyan-400' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
                         >
                             {selectedImage ? (
