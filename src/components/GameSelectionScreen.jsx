@@ -167,16 +167,26 @@ const CategoryCard = memo(({
                                                 <div className="flex gap-2 p-2 bg-white/5 rounded-xl border border-white/5 mb-2">
                                                     <div className="flex-1 flex flex-col gap-1">
                                                         <span className="text-[8px] font-black uppercase text-white/30 ml-1">Durée (tours)</span>
-                                                        <div className="flex gap-1 flex-wrap">
-                                                            {[1, 2, 3, 5, 10, 999].map(t => (
-                                                                <button
-                                                                    key={String(t)}
-                                                                    onClick={(e) => { e.stopPropagation(); setEditValues(v => ({ ...v, duration: t })); }}
-                                                                    className={`px-2 py-1 rounded text-[8px] font-black transition-all ${editValues.duration === t ? 'bg-white text-black' : 'bg-white/5 text-white/40 hover:bg-white/10'}`}
-                                                                >
-                                                                    {t === 999 ? '∞' : `${t}T`}
-                                                                </button>
-                                                            ))}
+                                                        <div className="flex items-center gap-2">
+                                                            <input
+                                                                type="number"
+                                                                min="1"
+                                                                value={editValues.duration === 999 ? '' : editValues.duration}
+                                                                placeholder="∞"
+                                                                onChange={(e) => {
+                                                                    e.stopPropagation();
+                                                                    const val = e.target.value;
+                                                                    setEditValues(v => ({ ...v, duration: val === '' ? '' : parseInt(val) }));
+                                                                }}
+                                                                onBlur={() => {
+                                                                    if (editValues.duration === '' || isNaN(editValues.duration)) {
+                                                                        setEditValues(v => ({ ...v, duration: 999 }));
+                                                                    }
+                                                                }}
+                                                                className="w-16 bg-white/5 border border-white/10 rounded-lg py-1 px-2 text-center text-[10px] font-black outline-none focus:border-white/20"
+                                                                onClick={(e) => e.stopPropagation()}
+                                                            />
+                                                            <span className="text-[10px] text-white/40 font-black">Tours</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -301,16 +311,24 @@ const CategoryCard = memo(({
                                         <div className="flex gap-2 p-2 bg-white/5 rounded-xl border border-white/5 mb-1">
                                             <div className="flex-1 flex flex-col gap-1">
                                                 <span className="text-[8px] font-black uppercase text-white/30 ml-1">Durée (tours)</span>
-                                                <div className="flex gap-1 flex-wrap">
-                                                    {[1, 2, 3, 5, 10, 999].map(t => (
-                                                        <button
-                                                            key={String(t)}
-                                                            onClick={() => setNewChallenge(p => ({ ...p, duration: t }))}
-                                                            className={`px-2 py-1 rounded text-[8px] font-black transition-all ${newChallenge.duration === t ? 'bg-white text-black' : 'bg-white/5 text-white/40 hover:bg-white/10'}`}
-                                                        >
-                                                            {t === 999 ? '∞' : `${t}T`}
-                                                        </button>
-                                                    ))}
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        type="number"
+                                                        min="1"
+                                                        value={newChallenge.duration === 999 ? '' : newChallenge.duration}
+                                                        placeholder="∞"
+                                                        onChange={(e) => {
+                                                            const val = e.target.value;
+                                                            setNewChallenge(p => ({ ...p, duration: val === '' ? '' : parseInt(val) }));
+                                                        }}
+                                                        onBlur={() => {
+                                                            if (newChallenge.duration === '' || isNaN(newChallenge.duration)) {
+                                                                setNewChallenge(p => ({ ...p, duration: 999 }));
+                                                            }
+                                                        }}
+                                                        className="w-16 bg-white/5 border border-white/10 rounded-lg py-1 px-2 text-center text-[10px] font-black outline-none focus:border-white/20"
+                                                    />
+                                                    <span className="text-[10px] text-white/40 font-black">Tours</span>
                                                 </div>
                                             </div>
                                         </div>

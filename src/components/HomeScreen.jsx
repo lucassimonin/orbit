@@ -189,8 +189,15 @@ export default function HomeScreen({
                         <div className="relative">
                             <input
                                 type="number"
-                                value={maxRounds}
-                                onChange={(e) => setMaxRounds(Math.max(1, parseInt(e.target.value) || 0))}
+                                min="1"
+                                value={maxRounds === '' ? '' : maxRounds}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setMaxRounds(val === '' ? '' : Math.max(1, parseInt(val) || 1));
+                                }}
+                                onBlur={() => {
+                                    if (maxRounds === '') setMaxRounds(5);
+                                }}
                                 className="w-full bg-white/[0.05] border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-white/20 transition-all font-black text-center"
                             />
                         </div>
@@ -200,8 +207,15 @@ export default function HomeScreen({
                         <div className="relative">
                             <input
                                 type="number"
-                                value={targetPoints}
-                                onChange={(e) => setTargetPoints(Math.max(10, parseInt(e.target.value) || 0))}
+                                min="10"
+                                value={targetPoints === '' ? '' : targetPoints}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setTargetPoints(val === '' ? '' : Math.max(10, parseInt(val) || 10));
+                                }}
+                                onBlur={() => {
+                                    if (targetPoints === '') setTargetPoints(100);
+                                }}
                                 className="w-full bg-white/[0.05] border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-white/20 transition-all font-black text-center"
                             />
                         </div>
@@ -266,12 +280,7 @@ export default function HomeScreen({
                 </button>
             </motion.div>
 
-            {/* Footer */}
-            <div className="mt-12 z-10 opacity-20 hover:opacity-100 transition-opacity cursor-default">
-                <p className="text-[8px] font-black uppercase tracking-[0.4em] text-center max-w-[200px] leading-relaxed">
-                    Consommez avec <br /> modération
-                </p>
-            </div>
+
         </div>
     );
 }

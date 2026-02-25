@@ -18,6 +18,11 @@ function App() {
   const [isSpinning, setIsSpinning] = useState(false);
   const [resultIndex, setResultIndex] = useState(0);
 
+  // Age Verification
+  const [isAgeVerified, setIsAgeVerified] = useState(() => {
+    return localStorage.getItem('orbit_age_verified') === 'true';
+  });
+
   // Game Configuration State
   const [gameConfig, setGameConfig] = useState(() => {
     const saved = localStorage.getItem('orbit_game_config');
@@ -208,10 +213,52 @@ function App() {
     setActiveRules([]);
   };
 
-  // New function to handle ending the game and going to podium
   const handleEndGame = () => {
     setGameState('podium');
   };
+
+  if (!isAgeVerified) {
+    return (
+      <div className="fixed inset-0 bg-[#05050a] text-white flex items-center justify-center p-6 z-50">
+        <CosmicBackground />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-[#0f0f15]/90 backdrop-blur-3xl border border-white/10 rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl relative overflow-hidden"
+        >
+          <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+
+          <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-500/30 shadow-[0_0_30px_rgba(239,68,68,0.2)]">
+            <span className="text-3xl font-black italic text-red-500">-18</span>
+          </div>
+
+          <h2 className="text-3xl font-black italic mb-3">Attention</h2>
+          <p className="text-white/60 mb-8 font-medium">
+            L'abus d'alcool est dangereux pour la santé, à consommer avec modération.<br /><br />
+            Avez-vous plus de 18 ans pour accéder à cette application ?
+          </p>
+
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={() => {
+                localStorage.setItem('orbit_age_verified', 'true');
+                setIsAgeVerified(true);
+              }}
+              className="w-full bg-white text-black font-black italic rounded-xl py-4 uppercase transition-transform active:scale-95"
+            >
+              Oui, j'ai plus de 18 ans
+            </button>
+            <button
+              onClick={() => window.location.href = 'https://www.google.com'}
+              className="w-full bg-white/5 text-white/50 border border-white/10 font-bold italic rounded-xl py-4 transition-transform active:scale-95 hover:bg-white/10 hover:text-white"
+            >
+              Non, je suis mineur
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 bg-[#05050a] text-white selection:bg-cyan-500/30 overflow-hidden font-sans select-none" style={{ position: 'fixed', inset: 0, background: '#05050a', color: 'white', overflow: 'hidden' }}>
@@ -323,6 +370,13 @@ function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Global Prevention Message */}
+      <div className="fixed bottom-0 inset-x-0 pb-1 pt-4 text-center pointer-events-none z-50 bg-gradient-to-t from-[#05050a] to-transparent">
+        <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest px-4 leading-tight">
+          L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
+        </p>
+      </div>
     </div>
   );
 }

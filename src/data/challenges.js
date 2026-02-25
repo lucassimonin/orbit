@@ -1,8 +1,8 @@
 export const CHALLENGES = [
-    { id: 1, type: 'Shot', title: 'CUL SEC', text: 'Prends un shot immédiatement.', color: '#ff00a5', icon: 'GlassWater', category: 'Shot', points: 10, timer: 10 },
+    { id: 1, type: 'Shot', title: 'CUL SEC', text: 'Prends un shot immédiatement.', color: '#ff00a5', icon: 'GlassWater', category: 'Shot', points: 10 },
     { id: 2, type: 'Give', title: 'GÉNÉREUX', text: 'Distribue 3 gorgées à qui tu veux.', color: '#00ffff', icon: 'Gift', category: 'Gage', points: 10 },
     { id: 3, type: 'Take', title: 'DÉLUGE', text: 'Prends 2 gorgées.', color: '#ffcc00', icon: 'Droplets', category: 'Gage', points: 10 },
-    { id: 4, type: 'Rule', title: 'DICTATEUR', text: 'Invente une règle qui dure 3 tours.', color: '#bc13fe', icon: 'Crown', category: 'Règle', points: 10, timer: 15, duration: 3 },
+    { id: 4, type: 'Rule', title: 'DICTATEUR', text: 'Invente une règle qui dure 3 tours.', color: '#bc13fe', icon: 'Crown', category: 'Règle', points: 10, duration: 3 },
     { id: 5, type: 'Game', title: 'DUEL', text: 'Choisis un adversaire, le premier qui rit boit.', color: '#32cd32', icon: 'Swords', category: 'Défis', points: 10 },
     { id: 6, type: 'Partner', title: 'BINÔME', text: 'Choisis un partenaire. Quand l\'un boit, l\'autre aussi.', color: '#ff6b00', icon: 'Users', category: 'Défis', points: 10 },
     { id: 7, type: 'Shot', title: 'SHAKING', text: 'Tout le monde prend un shot sauf toi.', color: '#ff00a5', icon: 'Zap', category: 'Shot', points: 10 },
