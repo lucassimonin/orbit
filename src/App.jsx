@@ -233,10 +233,25 @@ function App() {
           </div>
 
           <h2 className="text-3xl font-black italic mb-3">Attention</h2>
-          <p className="text-white/60 mb-8 font-medium">
+          <p className="text-white/60 mb-6 font-medium">
             L'abus d'alcool est dangereux pour la santé, à consommer avec modération.<br /><br />
             Avez-vous plus de 18 ans pour accéder à cette application ?
           </p>
+
+          <div className="bg-black/30 border border-white/5 rounded-xl p-4 mb-8 text-left h-32 overflow-y-auto custom-scrollbar">
+            <h3 className="text-white/80 font-bold text-[10px] uppercase tracking-wider mb-2">Clause de Non-Responsabilité</h3>
+            <p className="text-white/40 text-[10px] leading-relaxed mb-3">
+              Cette application est un divertissement. Ses créateurs ne sauraient être tenus responsables des conséquences liées à la consommation d'alcool des utilisateurs. Vos choix vous appartiennent.
+            </p>
+            <div className="bg-white/5 rounded-lg p-2.5 flex items-start gap-3 border border-white/5">
+              <div className="w-6 h-6 rounded-full bg-cyan-500/20 flex items-center justify-center flex-shrink-0 text-cyan-500 font-black italic text-xs">
+                SAM
+              </div>
+              <p className="text-white/60 text-[9px] leading-tight pt-0.5">
+                <strong>Ne forcez personne à boire.</strong><br />Ne prenez jamais le volant après avoir consommé de l'alcool. Celui qui conduit, c'est celui qui ne boit pas.
+              </p>
+            </div>
+          </div>
 
           <div className="flex flex-col gap-3">
             <button
